@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Calendar, Video, MapPin, Send, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const BookingForm = forwardRef<HTMLElement>((_, ref) => {
   const { toast } = useToast();
@@ -31,16 +32,38 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Call the edge function to save booking and send emails
+      const { data, error } = await supabase.functions.invoke('send-booking-notification', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          sessionType: formData.sessionType,
+          preferredDate: formData.preferredDate,
+          message: formData.message,
+        },
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    toast({
-      title: "Booking Request Sent!",
-      description: "I'll get back to you within 24 hours to confirm your session.",
-    });
+      if (error) {
+        throw error;
+      }
+
+      setIsSubmitted(true);
+      toast({
+        title: "Booking Request Sent!",
+        description: "You'll receive a confirmation email shortly.",
+      });
+    } catch (error: any) {
+      console.error("Error submitting booking:", error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -54,7 +77,7 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
             Request Received!
           </h2>
           <p className="font-body text-muted-foreground mb-8">
-            Thank you for reaching out, {formData.name.split(" ")[0]}! I'll review your booking request and contact you within 24 hours to confirm your {formData.sessionType} session.
+            Thank you for reaching out, {formData.name.split(" ")[0]}! I'll review your booking request and contact you within 24 hours to confirm your {formData.sessionType} session. Check your email for a confirmation!
           </p>
           <Button
             variant="outline"
