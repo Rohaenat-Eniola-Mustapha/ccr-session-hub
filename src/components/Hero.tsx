@@ -125,20 +125,20 @@ const Hero = ({ onBookNow }: HeroProps) => {
         {/* Header Text */}
         <motion.h1
           variants={itemVariants}
-          className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-8 leading-tight"
+          className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-8 leading-tight"
         >
           Career Clarity Room helps women rebuild their careers, and move from{" "}
-          <span className="text-secondary relative inline-block">
+          <span className="relative inline-block text-white/80 italic">
             career confusion
             <motion.span
-              className="absolute -bottom-1 left-0 w-full h-1 bg-secondary/50 rounded-full"
+              className="absolute -bottom-1 left-0 w-full h-1 bg-white/40 rounded-full"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
             />
           </span>{" "}
           to{" "}
-          <span className="text-secondary">clarity and confidence</span>
+          <span className="text-white font-extrabold underline decoration-white/50 decoration-2 underline-offset-4">clarity and confidence</span>
         </motion.h1>
 
         {/* Intro Section */}
@@ -151,7 +151,7 @@ const Hero = ({ onBookNow }: HeroProps) => {
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
-            <p className="font-body text-base md:text-lg text-primary-foreground/90 leading-relaxed">
+            <p className="font-body text-base md:text-lg text-white/90 leading-relaxed">
               Welcome to CCR, a supportive space for women (stay-at-home mums, career returnees, and women seeking direction). Here, you will find guidance, practical tools, and tailored mentorship to help you move forward.
             </p>
           </motion.div>
@@ -163,7 +163,7 @@ const Hero = ({ onBookNow }: HeroProps) => {
             {highlights.map((highlight, index) => (
               <motion.li
                 key={index}
-                className="flex items-start gap-3 font-body text-primary-foreground/90"
+                className="flex items-start gap-3 font-body text-white/90"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
@@ -189,8 +189,8 @@ const Hero = ({ onBookNow }: HeroProps) => {
         {/* Call to Action */}
         <motion.div variants={itemVariants}>
           <motion.p
-            className="font-display text-xl text-secondary mb-5 italic"
-            animate={{ opacity: [0.7, 1, 0.7] }}
+            className="font-display text-xl text-white mb-5 italic"
+            animate={{ opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             Start your clarity journey today.
