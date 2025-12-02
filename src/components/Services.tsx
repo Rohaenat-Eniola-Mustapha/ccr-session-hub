@@ -1,4 +1,5 @@
 import { Video, MapPin, Clock, Target, Users, Compass } from "lucide-react";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -34,31 +35,71 @@ const sessionTypes = [
 ];
 
 const Services = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
   return (
-    <section className="py-16 px-6 bg-background">
+    <section className="py-16 px-6 bg-background overflow-hidden">
       <div className="max-w-md mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="font-display text-3xl font-bold text-foreground mb-4">
             What I Offer
           </h2>
           <p className="font-body text-muted-foreground">
             Personalized coaching to help you achieve career clarity and success.
           </p>
-        </div>
+        </motion.div>
 
         {/* Services Grid */}
-        <div className="space-y-4 mb-12">
+        <motion.div
+          className="space-y-4 mb-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={service.title}
-              className="gradient-card rounded-xl p-6 shadow-soft hover:shadow-elevated transition-all duration-300 border border-border/50"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -4 }}
+              transition={{ duration: 0.3 }}
+              className="gradient-card rounded-xl p-6 shadow-soft hover:shadow-elevated transition-shadow duration-300 border border-border/50"
             >
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-secondary/10">
+                <motion.div
+                  className="p-3 rounded-lg bg-secondary/10"
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
                   <service.icon className="w-6 h-6 text-secondary" />
-                </div>
+                </motion.div>
                 <div>
                   <h3 className="font-display text-lg font-semibold text-foreground mb-2">
                     {service.title}
@@ -68,26 +109,45 @@ const Services = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Session Types */}
-        <div className="text-center mb-8">
+        <motion.div
+          className="text-center mb-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h3 className="font-display text-2xl font-bold text-foreground mb-4">
             Session Options
           </h3>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <motion.div
+          className="grid grid-cols-2 gap-4"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {sessionTypes.map((type, index) => (
-            <div
+            <motion.div
               key={type.title}
-              className="gradient-card rounded-xl p-5 shadow-soft border border-border/50 text-center"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -4 }}
+              transition={{ duration: 0.3 }}
+              className="gradient-card rounded-xl p-5 shadow-soft hover:shadow-elevated border border-border/50 text-center cursor-pointer"
             >
-              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+              <motion.div
+                className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
                 <type.icon className="w-6 h-6 text-primary" />
-              </div>
+              </motion.div>
               <h4 className="font-display text-base font-semibold text-foreground mb-2">
                 {type.title}
               </h4>
@@ -98,9 +158,9 @@ const Services = () => {
                 <Clock className="w-3 h-3" />
                 <span className="font-body text-xs font-medium">{type.duration}</span>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
