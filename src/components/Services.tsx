@@ -1,21 +1,31 @@
-import { Video, MapPin, Clock, Target, Users, Compass } from "lucide-react";
+import { Video, MapPin, Clock, GraduationCap, Compass, BookOpen, Handshake, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
 const services = [
   {
-    icon: Target,
-    title: "Career Strategy",
-    description: "Define your career goals and create an actionable roadmap to achieve them.",
+    icon: GraduationCap,
+    title: "Career Mentorship and Digital Skills Training",
+    description: "Personal guidance to help you set goals, make decisions, and map your next steps.",
   },
   {
     icon: Compass,
-    title: "Career Transition",
-    description: "Navigate career changes with confidence and strategic planning.",
+    title: "1:1 Clarity Sessions",
+    description: "Dedicated sessions focused on direction, decision-making, and career confidence.",
+  },
+  {
+    icon: BookOpen,
+    title: "Clarity Programs",
+    description: "Structured learning paths designed for women (stay-at-home mums and returning professionals).",
+  },
+  {
+    icon: Handshake,
+    title: "Accountability Partner",
+    description: "Support to help you achieve your goals and stay on track.",
   },
   {
     icon: Users,
-    title: "Interview Prep",
-    description: "Master interview skills and present your best self to potential employers.",
+    title: "Community Activities",
+    description: "Weekly sessions, prompts, and challenges to help you stay consistent.",
   },
 ];
 
@@ -69,10 +79,10 @@ const Services = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-display text-3xl font-bold text-foreground mb-4">
-            What I Offer
+            Services & Programs
           </h2>
           <p className="font-body text-muted-foreground">
-            Personalized coaching to help you achieve career clarity and success.
+            Tailored support to help you gain clarity and build the career you deserve.
           </p>
         </motion.div>
 
