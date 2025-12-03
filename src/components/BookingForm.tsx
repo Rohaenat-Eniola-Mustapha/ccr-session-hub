@@ -4,9 +4,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Calendar, Video, MapPin, Send, CheckCircle } from "lucide-react";
+import { Calendar, Video, MapPin, Send, CheckCircle, Target, Compass, Footprints, Wrench } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { motion } from "framer-motion";
+
+const sessionCovers = [
+  { icon: Target, text: "Your current challenge" },
+  { icon: Compass, text: "Your goals" },
+  { icon: Footprints, text: "Practical next steps" },
+  { icon: Wrench, text: "Tools to stay consistent" },
+];
 
 const BookingForm = forwardRef<HTMLElement>((_, ref) => {
   const { toast } = useToast();
@@ -104,17 +112,53 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
     <section ref={ref} className="py-16 px-6 bg-muted/50">
       <div className="max-w-md mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-10">
-          <div className="w-16 h-16 mx-auto mb-6 rounded-full gradient-gold flex items-center justify-center shadow-gold">
+        <div className="text-center mb-8">
+          <motion.div 
+            className="w-16 h-16 mx-auto mb-6 rounded-full gradient-gold flex items-center justify-center shadow-gold"
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, type: "spring" }}
+          >
             <Calendar className="w-8 h-8 text-primary" />
-          </div>
+          </motion.div>
           <h2 className="font-display text-3xl font-bold text-foreground mb-4">
-            Book Your Session
+            Book a Session
           </h2>
           <p className="font-body text-muted-foreground">
-            Take the first step towards career clarity. Fill out the form below and I'll get back to you shortly.
+            Secure a private clarity session tailored to your needs.
           </p>
         </div>
+
+        {/* What a Session Covers */}
+        <motion.div 
+          className="bg-primary/5 rounded-xl p-6 mb-8 border border-primary/10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <h3 className="font-display text-lg font-semibold text-foreground mb-4">
+            What a Session Covers
+          </h3>
+          <ul className="space-y-3">
+            {sessionCovers.map((item, index) => (
+              <motion.li 
+                key={item.text}
+                className="flex items-center gap-3"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.4 }}
+              >
+                <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                  <item.icon className="w-4 h-4 text-secondary" />
+                </div>
+                <span className="font-body text-muted-foreground">{item.text}</span>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
 
         {/* Booking Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -260,7 +304,7 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
             ) : (
               <>
                 <Send className="w-5 h-5" />
-                Submit Booking Request
+                Book Your Session
               </>
             )}
           </Button>
