@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import Hero from "@/components/Hero";
+import AboutUs from "@/components/AboutUs";
 import Services from "@/components/Services";
 import BookingForm from "@/components/BookingForm";
 import Contact from "@/components/Contact";
@@ -17,6 +18,7 @@ const Index = () => {
     <main className="min-h-screen">
       <MobileNav onBookNow={scrollToBooking} />
       <Hero onBookNow={scrollToBooking} />
+      <AboutUs />
       <Services />
       <BookingForm ref={bookingRef} />
       <div id="contact">
