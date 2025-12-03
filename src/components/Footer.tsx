@@ -2,17 +2,17 @@ import { Facebook, Instagram, MessageCircle, ExternalLink } from "lucide-react";
 
 const resources = [
   { title: "From Stuck to Clear", url: "https://selar.com/d4145r" },
-  { title: "The Career Clarity Room: A Strategic Guide for Stay-at-Home Mums", url: "https://selar.com/72f901" },
-  { title: "Career and Motherhood: Strike the Balance", url: "https://selar.com/qm9oz65w1k" },
+  { title: "Career Clarity Room Guide", url: "https://selar.com/72f901" },
+  { title: "Career and Motherhood", url: "https://selar.com/qm9oz65w1k" },
   { title: "CCR Clarity Worksheet", url: "https://selar.com/492w67" },
-  { title: "CCR Free Resume Template", url: "https://selar.com/oa1611" },
+  { title: "Free Resume Template", url: "https://selar.com/oa1611" },
 ];
 
 const quickLinks = [
   { label: "Home", href: "#" },
+  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Book a Session", href: "#booking" },
-  { label: "Resources", href: "#resources" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -33,74 +33,90 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-12 px-6 bg-primary text-white">
-      <div className="max-w-4xl mx-auto">
-        {/* Resources Section */}
-        <div id="resources" className="mb-10">
-          <h3 className="font-display text-xl font-bold mb-6 text-center">Resources</h3>
-          <div className="grid gap-3">
-            {resources.map((resource) => (
-              <a
-                key={resource.title}
-                href={resource.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white/80 hover:text-secondary transition-colors font-body text-sm group"
-              >
-                <ExternalLink className="w-4 h-4 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                <span>{resource.title}</span>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Social Links */}
-        <div className="mb-10 text-center">
-          <h3 className="font-display text-xl font-bold mb-6">Connect With Us</h3>
-          <div className="flex justify-center gap-6">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-2 text-white/80 hover:text-secondary transition-colors group"
-                aria-label={social.label}
-              >
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
-                  <social.icon className="w-6 h-6" />
-                </div>
-                <span className="font-body text-xs">{social.label}</span>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Quick Links */}
-        <div className="mb-8 text-center">
-          <h3 className="font-display text-lg font-semibold mb-4">Quick Links</h3>
-          <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2">
-            {quickLinks.map((link, index) => (
-              <span key={link.label} className="flex items-center">
-                <button
-                  onClick={() => scrollToSection(link.href)}
-                  className="font-body text-sm text-white/80 hover:text-secondary transition-colors"
+    <footer className="bg-primary text-white">
+      {/* Main Footer Content */}
+      <div className="py-12 px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          
+          {/* Brand Column */}
+          <div className="lg:col-span-1">
+            <h2 className="font-display text-2xl font-bold mb-3">Career Clarity Room</h2>
+            <p className="font-body text-white/70 text-sm leading-relaxed mb-6">
+              Helping women rebuild their careers, move from confusion to clarity and confidence.
+            </p>
+            {/* Social Icons */}
+            <div className="flex gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary transition-colors"
+                  aria-label={social.label}
                 >
-                  {link.label}
-                </button>
-                {index < quickLinks.length - 1 && (
-                  <span className="ml-4 text-white/40">|</span>
-                )}
-              </span>
-            ))}
-          </nav>
-        </div>
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
+          </div>
 
-        {/* Copyright */}
-        <div className="text-center pt-6 border-t border-white/20">
-          <p className="font-body text-sm text-white/60">
-            © Career Clarity Room. All Rights Reserved.
+          {/* Quick Links Column */}
+          <div>
+            <h3 className="font-display text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <button
+                    onClick={() => scrollToSection(link.href)}
+                    className="font-body text-sm text-white/70 hover:text-secondary transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources Column */}
+          <div id="resources" className="lg:col-span-2">
+            <h3 className="font-display text-lg font-semibold mb-4">Resources</h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {resources.map((resource) => (
+                <li key={resource.title}>
+                  <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 font-body text-sm text-white/70 hover:text-secondary transition-colors group"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5 flex-shrink-0 opacity-60 group-hover:opacity-100" />
+                    <span>{resource.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="font-body text-sm text-white/50">
+            © {new Date().getFullYear()} Career Clarity Room. All Rights Reserved.
           </p>
+          <div className="flex items-center gap-6">
+            {quickLinks.slice(0, 4).map((link) => (
+              <button
+                key={link.label}
+                onClick={() => scrollToSection(link.href)}
+                className="font-body text-xs text-white/50 hover:text-white/80 transition-colors"
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
