@@ -1,29 +1,25 @@
-import { useRef } from "react";
 import Hero from "@/components/Hero";
 import AboutUs from "@/components/AboutUs";
 import Services from "@/components/Services";
 import BookingForm from "@/components/BookingForm";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import MobileNav from "@/components/MobileNav";
+import Navbar from "@/components/Navbar";
 
 const Index = () => {
-  const bookingRef = useRef<HTMLElement>(null);
-
-  const scrollToBooking = () => {
-    bookingRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <main className="min-h-screen">
-      <MobileNav onBookNow={scrollToBooking} />
-      <Hero onBookNow={scrollToBooking} />
+    <main className="min-h-screen pt-16">
+      <Navbar />
+      <Hero onBookNow={() => {
+        const bookingSection = document.getElementById("booking-section");
+        bookingSection?.scrollIntoView({ behavior: "smooth" });
+      }} />
       <AboutUs />
       <Services />
-      <BookingForm ref={bookingRef} />
-      <div id="contact">
-        <Contact />
+      <div id="booking-section">
+        <BookingForm />
       </div>
+      <Contact />
       <Footer />
     </main>
   );

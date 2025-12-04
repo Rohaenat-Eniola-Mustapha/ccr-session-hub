@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Facebook, Instagram, MessageCircle, ExternalLink } from "lucide-react";
 
 const resources = [
@@ -9,11 +10,12 @@ const resources = [
 ];
 
 const quickLinks = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Book a Session", href: "#booking" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Book a Session", href: "/booking" },
+  { label: "Resources", href: "/resources" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const socialLinks = [
@@ -23,15 +25,6 @@ const socialLinks = [
 ];
 
 const Footer = () => {
-  const scrollToSection = (href: string) => {
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <footer className="bg-primary text-white">
       {/* Main Footer Content */}
@@ -67,12 +60,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
+                  <Link
+                    to={link.href}
                     className="font-body text-sm text-white/70 hover:text-secondary transition-colors"
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -108,13 +101,13 @@ const Footer = () => {
           </p>
           <div className="flex items-center gap-6">
             {quickLinks.slice(0, 4).map((link) => (
-              <button
+              <Link
                 key={link.label}
-                onClick={() => scrollToSection(link.href)}
+                to={link.href}
                 className="font-body text-xs text-white/50 hover:text-white/80 transition-colors"
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </div>
         </div>
