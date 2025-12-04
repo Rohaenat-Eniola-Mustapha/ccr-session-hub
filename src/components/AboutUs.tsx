@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { Heart, Sparkles, Target, TrendingUp, Users } from "lucide-react";
+import { Heart, Sparkles, Target, TrendingUp, Users, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const values = [
   { icon: Heart, label: "Support" },
@@ -95,7 +97,7 @@ const AboutUs = () => {
         </motion.div>
 
         {/* What We Stand For */}
-        <motion.div variants={itemVariants} className="text-center mb-8">
+        <motion.div variants={itemVariants} className="text-center mb-12">
           <h3 className="font-display text-2xl font-semibold text-white mb-8">
             What We Stand For
           </h3>
@@ -124,6 +126,16 @@ const AboutUs = () => {
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Learn More Button */}
+        <motion.div variants={itemVariants} className="text-center">
+          <Link to="/about">
+            <Button variant="hero" size="lg" className="group">
+              Learn More About Us
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
         </motion.div>
       </motion.div>
     </section>
