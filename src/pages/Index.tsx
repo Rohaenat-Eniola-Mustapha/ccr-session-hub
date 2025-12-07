@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import AboutUs from "@/components/AboutUs";
 import Services from "@/components/Services";
 import BookingForm from "@/components/BookingForm";
-import Contact from "@/components/Contact";
+import ContactPreview from "@/components/ContactPreview";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
@@ -19,7 +19,7 @@ const Index = () => {
       <div id="booking-section">
         <BookingForm />
       </div>
-      <Contact />
+      <ContactPreview />
       <Footer />
     </main>
   );
