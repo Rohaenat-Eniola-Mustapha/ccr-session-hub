@@ -18,7 +18,7 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -35,10 +35,10 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`font-body text-sm transition-colors ${
+                className={`font-body text-sm font-medium transition-all duration-300 px-3 py-2 rounded-lg ${
                   location.pathname === link.href
-                    ? "text-secondary font-medium"
-                    : "text-white/80 hover:text-white"
+                    ? "text-primary bg-white shadow-md"
+                    : "text-white hover:text-primary hover:bg-white/90"
                 }`}
               >
                 {link.label}
@@ -64,7 +64,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-primary border-t border-white/10"
+            className="md:hidden bg-primary/95 backdrop-blur-sm"
           >
             <div className="px-4 py-4 space-y-2">
               {navLinks.map((link) => (
@@ -72,10 +72,10 @@ const Navbar = () => {
                   key={link.href}
                   to={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block py-2 px-4 rounded-lg font-body text-sm transition-colors ${
+                  className={`block py-3 px-4 rounded-lg font-body text-sm font-medium transition-all ${
                     location.pathname === link.href
-                      ? "text-secondary bg-white/10 font-medium"
-                      : "text-white/80 hover:text-white hover:bg-white/5"
+                      ? "text-primary bg-white shadow-md"
+                      : "text-white hover:text-primary hover:bg-white/90"
                   }`}
                 >
                   {link.label}
