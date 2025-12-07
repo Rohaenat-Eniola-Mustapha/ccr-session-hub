@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Heart, Sparkles, Target, TrendingUp, Users, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useCountUp } from "@/hooks/useCountUp";
 
 const values = [
   { icon: Heart, label: "Support" },
@@ -9,6 +10,13 @@ const values = [
   { icon: Target, label: "Clarity" },
   { icon: TrendingUp, label: "Growth" },
   { icon: Users, label: "Community" },
+];
+
+const stats = [
+  { value: 100, suffix: "+", label: "Women Empowered" },
+  { value: 50, suffix: "+", label: "Sessions Delivered" },
+  { value: 5, suffix: "+", label: "Years Experience" },
+  { value: 98, suffix: "%", label: "Client Satisfaction" },
 ];
 
 const containerVariants = {
@@ -26,6 +34,33 @@ const itemVariants = {
     y: 0,
     transition: { duration: 0.6, ease: "easeOut" as const },
   },
+};
+
+const StatCard = ({ value, suffix, label }: { value: number; suffix: string; label: string }) => {
+  const { count, ref } = useCountUp({ end: value, duration: 2000 });
+
+  return (
+    <motion.div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className="text-center p-6"
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.div
+        className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-2"
+        initial={{ scale: 1 }}
+        whileInView={{ scale: [1, 1.1, 1] }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        {count}
+        {suffix}
+      </motion.div>
+      <p className="font-body text-white/80 text-sm md:text-base">{label}</p>
+    </motion.div>
+  );
 };
 
 const AboutUs = () => {
@@ -56,6 +91,16 @@ const AboutUs = () => {
             About Us
           </h2>
           <div className="w-20 h-1 bg-secondary mx-auto rounded-full" />
+        </motion.div>
+
+        {/* Stats Section with Rolling Numbers */}
+        <motion.div
+          variants={itemVariants}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden"
+        >
+          {stats.map((stat, index) => (
+            <StatCard key={index} {...stat} />
+          ))}
         </motion.div>
 
         {/* Who We Are */}
