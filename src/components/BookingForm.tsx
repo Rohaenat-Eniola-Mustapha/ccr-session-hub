@@ -4,9 +4,23 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Calendar, Video, MapPin, Send, CheckCircle, Target, Compass, Footprints, Wrench, Clock, MessageCircle, CalendarCheck, Sparkles, Heart, Shield } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import {
+  Calendar,
+  Video,
+  MapPin,
+  Send,
+  CheckCircle,
+  Target,
+  Compass,
+  Footprints,
+  Wrench,
+  Clock,
+  MessageCircle,
+  CalendarCheck,
+  Sparkles,
+  Heart,
+  Shield
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -73,9 +87,6 @@ const faqs = [
 ];
 
 const BookingForm = forwardRef<HTMLElement>((_, ref) => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -84,6 +95,13 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
     preferredDate: "",
     message: "",
   });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -107,94 +125,6 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
     },
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const { data, error } = await supabase.functions.invoke('send-booking-notification', {
-        body: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          sessionType: formData.sessionType,
-          preferredDate: formData.preferredDate,
-          message: formData.message,
-        },
-      });
-
-      if (error) {
-        throw error;
-      }
-
-      setIsSubmitted(true);
-      toast({
-        title: "Booking Request Sent!",
-        description: "You'll receive a confirmation email shortly.",
-      });
-    } catch (error: any) {
-      console.error("Error submitting booking:", error);
-      toast({
-        title: "Something went wrong",
-        description: "Please try again or contact us directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  if (isSubmitted) {
-    return (
-      <section ref={ref} className="py-16 px-6 bg-background">
-        <div className="max-w-md mx-auto text-center">
-          <motion.div 
-            className="w-20 h-20 mx-auto mb-6 rounded-full bg-secondary/20 flex items-center justify-center"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5, type: "spring" }}
-          >
-            <CheckCircle className="w-10 h-10 text-secondary" />
-          </motion.div>
-          <h2 className="font-display text-3xl font-bold text-foreground mb-4">
-            Request Received!
-          </h2>
-          <p className="font-body text-muted-foreground mb-8">
-            Thank you for reaching out, {formData.name.split(" ")[0]}! I'll review your booking request and contact you within 24 hours to confirm your {formData.sessionType} session. Check your email for a confirmation!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              variant="outline"
-              onClick={() => {
-                setIsSubmitted(false);
-                setFormData({
-                  name: "",
-                  email: "",
-                  phone: "",
-                  sessionType: "virtual",
-                  preferredDate: "",
-                  message: "",
-                });
-              }}
-            >
-              Book Another Session
-            </Button>
-            <Link to="/resources">
-              <Button>Explore Resources</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section ref={ref} className="py-16 px-6 bg-background overflow-hidden">
       {/* Hero Section */}
@@ -216,8 +146,8 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
           Book a Session
         </h1>
         <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-          Take the first step towards career clarity. Schedule a personalized session 
-          and let's work together to unlock your potential.
+          Take the first step towards career clarity. Schedule a personalized
+          session and let's work together to unlock your potential.
         </p>
       </motion.div>
 
@@ -289,7 +219,7 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
               </h3>
               <ul className="space-y-4">
                 {sessionCovers.map((item, index) => (
-                  <motion.li 
+                  <motion.li
                     key={item.text}
                     className="flex items-center gap-4"
                     initial={{ opacity: 0, x: -20 }}
@@ -342,7 +272,7 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
           >
             <div className="gradient-card rounded-2xl p-8 border border-border/50 shadow-elevated">
               <div className="text-center mb-8">
-                <motion.div 
+                <motion.div
                   className="w-14 h-14 mx-auto mb-4 rounded-full gradient-gold flex items-center justify-center shadow-gold"
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -359,7 +289,7 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form className="space-y-5">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="font-body font-medium">
                     Full Name
@@ -434,6 +364,7 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
                         <Clock className="w-3 h-3" /> 60 min
                       </span>
                     </Label>
+
                     <Label
                       htmlFor="physical"
                       className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
@@ -486,25 +417,22 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  variant="hero"
-                  size="xl"
-                  className="w-full"
-                  disabled={isSubmitting}
+                {/* REPLACED SUBMIT BUTTON WITH WHATSAPP BUTTON */}
+                <a
+                  href="https://wa.link/r0c4yb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      Book Your Session
-                    </>
-                  )}
-                </Button>
+                  <Button
+                    variant="hero"
+                    size="xl"
+                    className="w-full flex items-center justify-center gap-2"
+                  >
+                    <Send className="w-5 h-5" />
+                    Book Your Session
+                  </Button>
+                </a>
               </form>
             </div>
           </motion.div>
@@ -535,7 +463,7 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {faqs.map((faq, index) => (
+          {faqs.map((faq) => (
             <motion.div
               key={faq.question}
               variants={itemVariants}
