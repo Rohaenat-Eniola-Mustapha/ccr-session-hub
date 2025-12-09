@@ -18,7 +18,7 @@ const contactMethods = [
     icon: MessageCircle,
     title: "WhatsApp",
     value: "Send a message",
-    href: "https://wa.me/2347010436270",
+    href: "https://wa.link/r0c4yb",
   },
 ];
 
