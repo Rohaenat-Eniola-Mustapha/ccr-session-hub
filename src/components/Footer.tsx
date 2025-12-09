@@ -28,7 +28,7 @@ const supportLinks = [
 const socialLinks = [
   { icon: Facebook, label: "Facebook", url: "https://www.facebook.com/share/18yXBJhubA/" },
   { icon: Instagram, label: "Instagram", url: "https://www.instagram.com/career_clarity_room" },
-  { icon: MessageCircle, label: "WhatsApp", url: "https://wa.me/2347010436270" },
+  { icon: MessageCircle, label: "WhatsApp", url: "https://wa.link/r0c4yb" },
 ];
 
 const Footer = () => {
