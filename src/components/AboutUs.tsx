@@ -93,7 +93,7 @@ const AboutUs = () => {
           <div className="w-20 h-1 bg-secondary mx-auto rounded-full" />
         </motion.div>
 
-        {/* Stats Section with Rolling Numbers */}
+        /* {/* Stats Section with Rolling Numbers */}
         <motion.div
           variants={itemVariants}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 bg-primary/5 backdrop-blur-sm rounded-2xl border border-primary/10 overflow-hidden"
@@ -101,7 +101,7 @@ const AboutUs = () => {
           {stats.map((stat, index) => (
             <StatCard key={index} {...stat} />
           ))}
-        </motion.div>
+        </motion.div> */
 
         {/* Who We Are */}
         <motion.div
