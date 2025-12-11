@@ -419,7 +419,7 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
 
                 {/* REPLACED SUBMIT BUTTON WITH WHATSAPP BUTTON */}
                 <a
-                  href="https://wa.link/r0c4yb"
+                  href="https://selar.com/8s68537n99"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block"
