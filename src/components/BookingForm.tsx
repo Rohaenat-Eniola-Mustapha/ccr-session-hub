@@ -264,180 +264,181 @@ const BookingForm = forwardRef<HTMLElement>((_, ref) => {
           </motion.div>
 
           {/* Right Column - Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="gradient-card rounded-2xl p-8 border border-border/50 shadow-elevated">
-              <div className="text-center mb-8">
-                <motion.div
-                  className="w-14 h-14 mx-auto mb-4 rounded-full gradient-gold flex items-center justify-center shadow-gold"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, type: "spring" }}
-                >
-                  <Calendar className="w-7 h-7 text-primary" />
-                </motion.div>
-                <h3 className="font-display text-2xl font-bold text-foreground mb-2">
-                  Request Your Session
-                </h3>
-                <p className="font-body text-sm text-muted-foreground">
-                  Fill in your details and we'll get back to you within 24 hours.
-                </p>
-              </div>
+<motion.div
+  initial={{ opacity: 0, x: 20 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+>
+  <div className="gradient-card rounded-2xl p-8 border border-border/50 shadow-elevated">
+    <div className="text-center mb-8">
+      <motion.div
+        className="w-14 h-14 mx-auto mb-4 rounded-full gradient-gold flex items-center justify-center shadow-gold"
+        initial={{ scale: 0 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, type: "spring" }}
+      >
+        <Calendar className="w-7 h-7 text-primary" />
+      </motion.div>
+      <h3 className="font-display text-2xl font-bold text-foreground mb-2">
+        Request Your Session
+      </h3>
+      <p className="font-body text-sm text-muted-foreground">
+        Fill in your details and we'll get back to you within 24 hours.
+      </p>
+    </div>
 
-              <form className="space-y-5">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="font-body font-medium">
-                    Full Name
-                  </Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    placeholder="Enter your full name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
+    {/* FORM WITH NO SUBMISSION — ONLY INPUT UI */}
+    <div className="space-y-5">
 
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="font-body font-medium">
-                    Email Address
-                  </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="your.email@example.com"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="font-body font-medium">
-                    Phone Number
-                  </Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    placeholder="+234 700 000 0000"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-3">
-                  <Label className="font-body font-medium">Session Type</Label>
-                  <RadioGroup
-                    value={formData.sessionType}
-                    onValueChange={(value) =>
-                      setFormData((prev) => ({ ...prev, sessionType: value }))
-                    }
-                    className="grid grid-cols-2 gap-4"
-                  >
-                    <Label
-                      htmlFor="virtual"
-                      className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
-                        formData.sessionType === "virtual"
-                          ? "border-secondary bg-secondary/10"
-                          : "border-border hover:border-secondary/50"
-                      }`}
-                    >
-                      <RadioGroupItem value="virtual" id="virtual" className="sr-only" />
-                      <Video
-                        className={`w-6 h-6 ${
-                          formData.sessionType === "virtual"
-                            ? "text-secondary"
-                            : "text-muted-foreground"
-                        }`}
-                      />
-                      <span className="font-body text-sm font-medium">Virtual</span>
-                      <span className="font-body text-xs text-muted-foreground flex items-center gap-1">
-                        <Clock className="w-3 h-3" /> 60 min
-                      </span>
-                    </Label>
-
-                    <Label
-                      htmlFor="physical"
-                      className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
-                        formData.sessionType === "physical"
-                          ? "border-secondary bg-secondary/10"
-                          : "border-border hover:border-secondary/50"
-                      }`}
-                    >
-                      <RadioGroupItem value="physical" id="physical" className="sr-only" />
-                      <MapPin
-                        className={`w-6 h-6 ${
-                          formData.sessionType === "physical"
-                            ? "text-secondary"
-                            : "text-muted-foreground"
-                        }`}
-                      />
-                      <span className="font-body text-sm font-medium">Physical</span>
-                      <span className="font-body text-xs text-muted-foreground flex items-center gap-1">
-                        <Clock className="w-3 h-3" /> 90 min
-                      </span>
-                    </Label>
-                  </RadioGroup>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="preferredDate" className="font-body font-medium">
-                    Preferred Date & Time
-                  </Label>
-                  <Input
-                    id="preferredDate"
-                    name="preferredDate"
-                    type="datetime-local"
-                    value={formData.preferredDate}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="font-body font-medium">
-                    What would you like to discuss?
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Tell me about your career goals, challenges, or what you'd like to achieve..."
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={4}
-                  />
-                </div>
-
-                {/* REPLACED SUBMIT BUTTON WITH WHATSAPP BUTTON */}
-                <a
-                  href="https://selar.com/8s68537n99"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <Button
-                    variant="hero"
-                    size="xl"
-                    className="w-full flex items-center justify-center gap-2"
-                  >
-                    <Send className="w-5 h-5" />
-                    Book Your Session
-                  </Button>
-                </a>
-              </form>
-            </div>
-          </motion.div>
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="name" className="font-body font-medium">
+          Full Name
+        </Label>
+        <Input
+          id="name"
+          name="name"
+          placeholder="Enter your full name"
+          value={formData.name}
+          onChange={handleInputChange}
+          required
+        />
       </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="email" className="font-body font-medium">
+          Email Address
+        </Label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="your.email@example.com"
+          value={formData.email}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="phone" className="font-body font-medium">
+          Phone Number
+        </Label>
+        <Input
+          id="phone"
+          name="phone"
+          type="tel"
+          placeholder="+234 700 000 0000"
+          value={formData.phone}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+
+      <div className="space-y-3">
+        <Label className="font-body font-medium">Session Type</Label>
+        <RadioGroup
+          value={formData.sessionType}
+          onValueChange={(value) =>
+            setFormData((prev) => ({ ...prev, sessionType: value }))
+          }
+          className="grid grid-cols-2 gap-4"
+        >
+          <Label
+            htmlFor="virtual"
+            className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
+              formData.sessionType === "virtual"
+                ? "border-secondary bg-secondary/10"
+                : "border-border hover:border-secondary/50"
+            }`}
+          >
+            <RadioGroupItem value="virtual" id="virtual" className="sr-only" />
+            <Video
+              className={`w-6 h-6 ${
+                formData.sessionType === "virtual"
+                  ? "text-secondary"
+                  : "text-muted-foreground"
+              }`}
+            />
+            <span className="font-body text-sm font-medium">Virtual</span>
+            <span className="font-body text-xs text-muted-foreground flex items-center gap-1">
+              <Clock className="w-3 h-3" /> 60 min
+            </span>
+          </Label>
+
+          <Label
+            htmlFor="physical"
+            className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
+              formData.sessionType === "physical"
+                ? "border-secondary bg-secondary/10"
+                : "border-border hover:border-secondary/50"
+            }`}
+          >
+            <RadioGroupItem value="physical" id="physical" className="sr-only" />
+            <MapPin
+              className={`w-6 h-6 ${
+                formData.sessionType === "physical"
+                  ? "text-secondary"
+                  : "text-muted-foreground"
+              }`}
+            />
+            <span className="font-body text-sm font-medium">Physical</span>
+            <span className="font-body text-xs text-muted-foreground flex items-center gap-1">
+              <Clock className="w-3 h-3" /> 90 min
+            </span>
+          </Label>
+        </RadioGroup>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="preferredDate" className="font-body font-medium">
+          Preferred Date & Time
+        </Label>
+        <Input
+          id="preferredDate"
+          name="preferredDate"
+          type="datetime-local"
+          value={formData.preferredDate}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="message" className="font-body font-medium">
+          What would you like to discuss?
+        </Label>
+        <Textarea
+          id="message"
+          name="message"
+          placeholder="Tell me about your career goals, challenges, or what you'd like to achieve..."
+          value={formData.message}
+          onChange={handleInputChange}
+          rows={4}
+        />
+      </div>
+
+      {/* BUTTON THAT REDIRECTS TO SELAR */}
+      <a
+        href="https://selar.com/8s68537n99"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block"
+      >
+        <Button
+          variant="hero"
+          size="xl"
+          className="w-full flex items-center justify-center gap-2"
+        >
+          <Send className="w-5 h-5" />
+          Book Your Session
+        </Button>
+      </a>
+    </div>
+  </div>
+</motion.div>
+
 
       {/* FAQ Section */}
       <div className="max-w-4xl mx-auto">
