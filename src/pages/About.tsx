@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Heart, Sparkles, Target, TrendingUp, Users, Award, BookOpen, Briefcase, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import ifeoluwaImage from "@/assets/ifeoluwa-agboyin.png";
+import ifeoluwaImage from "@/assets/ifeoluwa-Aiyede.png";
 
 const values = [
   { icon: Heart, label: "Support" },
@@ -103,7 +103,7 @@ const About = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src={ifeoluwaImage}
-                  alt="Ifeoluwa Agboyin - Career Coach and Founder"
+                  alt="Ifeoluwa Aiyede - Career Coach and Founder"
                   className="w-full h-auto object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
@@ -119,7 +119,7 @@ const About = () => {
             <div className="space-y-6">
               <div>
                 <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
-                  Ifeoluwa Agboyin
+                  Ifeoluwa Aiyede
                 </h3>
                 <p className="text-secondary font-semibold text-lg">
                   Founder & Career Coach
@@ -127,7 +127,7 @@ const About = () => {
               </div>
               
               <p className="text-muted-foreground leading-relaxed">
-                Ifeoluwa Agboyin is a passionate career coach and mentor dedicated to helping women navigate their professional journeys. With years of experience in career development and digital skills training, she founded Career Clarity Room to create a supportive space where women can rediscover their potential.
+                Ifeoluwa Aiyede is a passionate career coach and mentor dedicated to helping women navigate their professional journeys. With years of experience in career development and digital skills training, she founded Career Clarity Room to create a supportive space where women can rediscover their potential.
               </p>
               
               <p className="text-muted-foreground leading-relaxed">
