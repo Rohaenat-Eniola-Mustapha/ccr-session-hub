@@ -166,10 +166,10 @@ const Contact = () => {
               </div>
               <p className="font-body text-muted-foreground mb-4">
                 We offer both virtual and in-person sessions. Our physical sessions 
-                are available in Lagos, Nigeria.
+                are available in Abuja, Nigeria.
               </p>
               <p className="font-body text-foreground">
-                Lagos, Nigeria
+                Abuja, Nigeria
               </p>
             </div>
 
