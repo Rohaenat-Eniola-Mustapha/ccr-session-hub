@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Heart, Sparkles, Target, TrendingUp, Users, Award, BookOpen, Briefcase, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import ifeoluwaImage from "@/assets/ifeoluwa-Aiyede.png";
+import ifeoluwaImage from "@/assets/ifeoluwa-agboyin.png";
 
 const values = [
   { icon: Heart, label: "Support" },
